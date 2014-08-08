@@ -13,55 +13,372 @@
 <body>
 
 <h2>Run in Fluorescent Night</h2>
-<!--
-&nbsp;&nbsp;&nbsp;
-<select class="">
-	<option value="indivual">个人</option>
-	<option valur="team">团队</option>
-</select>
--->
 
 <div class="frame">
 
-	<span class="tag">请选择报名类型：</span>
-	<img src="individual.png" class="pic">
+	<canvas id="glow" style="width:300px;height:100px;position:absolute;z-index:1;left:100px;top:100px;"></canvas>
+	<span class="tag">请选择报名类型：<p class="typeTips">（点击图标选择报名类型）</p></span>
+	<img src="individual.png" class="pic selectPic" value="individual">
 	<div class="vertical-devider">&nbsp;</div>
-	<span class="type">individual</span>
+	<img src="team.png" class="pic hiddenPic" style="display:none" value="team">
 
-<div class="horizontal-divider"></div>
 
-<form>
+
+
+<form onsubmit="return check();">
+
+	<div class="horizontal-divider"></div>
+
+	<span class="formTag" style="margin-left:37%;margin-bottom:0px">团队人数：</span>
+	<select name="groupNum" class="groupNum">
+		<option value="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2</option>
+		<option value="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3</option>
+		<option value="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4</option>
+	</select>
+
+	<div class="horizontal-divider"></div>
+	<div>
+
+	<!--头像
+	<div class="head">
+		<div>
+			<div>
+				<span class="glyphicon glyphicon-picture"></span>
+			</div>
+		</div>
+		<p>点击上传你的头像，选填</p>
+	</div>
+	-->
+
+	<div class="member" id="leader">队长</div>
+
+	</br>
+
 	<span class="formTag">姓名：</span>
-	<input type="text" placeholder="请在此处输入您的姓名" name="name">
+	<input type="text" placeholder="请在此处输入您的姓名" name="name" class="input-text name">
 	</br>
 
-	<span class="formTag">班级：</span>
-	<input type="text" placeholder="参考格式：2012级软件工程R4" name="class">
+	<span class="formTag">性别：</span>
+	<input type="radio" name="sex" value="male" class="input-sex sex"  checked>&nbsp;&nbsp;男
+	<input type="radio" name="sex" value="female" class="input-sex sex">&nbsp;&nbsp;女
 	</br>
 
-	<span class="formTag" style="margin-left:0px">联系方式：</span>
-	<input type="text" placeholder="如有短号请按“长号/短号”格式填写。如12345678901/658901" name="phone">
+	<span class="formTag">学号：</span>
+	<input type="text" placeholder="请填写你的学号" name="number" class="input-text number">
 	</br>
 
-	<span class="formTag" style="margin-left:0px">宿舍地址：</span>
-	<input type="text" placeholder="请参照“五山24栋409”格式填写" name="address">
+	<span class="formTag" name="college">学院：</span>
+		<select class="college disabled">
+			<option value="农学院">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;农学院</option>
+			<option value="资源环境学院">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;资源环境学院</option>
+			<option value="生命科学学院">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;生命科学学院</option>
+			<option value="经济管理学院">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;经济管理学院</option>
+			<option value="工程学院">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;工程学院</option>
+			<option value="动物科学学院">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;动物科学学院</option>
+			<option value="兽医学院">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;兽医学院</option>
+			<option value="园艺学院">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;园艺学院</option>
+			<option value="食品学院">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;食品学院</option>
+			<option value="林学院">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;林学院</option>
+			<option value="人文与法学学院">&nbsp;&nbsp;&nbsp;&nbsp;人文与法学学院</option>
+			<option value="理学院">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;理学院</option>
+			<option value="信息学院、软件学院">信息学院、软件学院</option>
+			<option value="艺术学院">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;艺术学院</option>
+			<option value="外国语学院">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;外国语学院</option>
+			<option value="水利与土木工程学院">水利与土木工程学院</option>
+			<option value="公共管理学院">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;公共管理学院</option>
+			<option value="继续教育学院">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;继续教育学院</option>
+			<option value="研究生">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;研究生</option>
+		</select>
+		&nbsp;&nbsp;/&nbsp;&nbsp;
+		<select class="grade" name="grade">
+			<option value="大一">大一</option>
+			<option value="大二">大二</option>
+			<option value="大三">大三</option>
+			<option value="大四">大四</option>
+		</select>
+	</br>
+
+	<span class="formTag formTagLong">联系方式：</span>
+	<input type="text" placeholder="长短号至少填写一个，短号优先" name="phoneLong" class="input-text phoneLong">
+	&nbsp;&nbsp;/&nbsp;&nbsp;
+	<input type="text" placeholder="短号，优先填写" name="phoneShort" class="input-text phoneShort" style="width:18.3%">
+	</br>
+
+
+	<span class="formTag formTagLong">宿舍地址：</span>
+	<input type="text" placeholder="请参照“五山24栋409”格式填写,选填" name="address" class="input-text address">
 	</br>
 
 	<span class="formTag">邮箱：</span>
-	<input type="text" placeholder="请在此处输入常用邮箱，选填" name="e-mail">
+	<input type="text" placeholder="请在此处输入常用邮箱" name="e-mail" class="input-text e-mail">
 	</br>
 
-	<div style="width:90px;height:90px;border-radius:45px;border:1px solid #777;float:right;margin-top:-24%;margin-right:8%">
-	<div style="background-color:#777;width:82px;height:82px;border-radius:41px;margin-left:3px;margin-top:3px">
-	<span class="glyphicon glyphicon-picture" style="color:#bbb;font-size:43px;margin-left:20px;margin-top:17px"></span>
-	</div>
+
 	</div>
 
 
-	</br>
-	</br>
+	<div class="horizontal-divider" style="margin-top:10px"></div>
+	<div id="teammate1">
+
+	<!--头像--
+	<div class="head">
+		<div>
+			<div>
+				<span class="glyphicon glyphicon-picture"></span>
+			</div>
+		</div>
+		<p>点击上传你的头像，选填</p>
+	</div>
+	-->
+
+	<div class="member">队员一</div>
+
 	</br>
 
+	<span class="formTag">姓名：</span>
+	<input type="text" placeholder="请在此处输入您的姓名" name="name1" class="input-text name">
+	</br>
+
+	<span class="formTag">性别：</span>
+	<input type="radio" name="sex1" value="male" class="input-sex sex"  checked>&nbsp;&nbsp;男
+	<input type="radio" name="sex1" value="female" class="input-sex sex">&nbsp;&nbsp;女
+	</br>
+
+	<span class="formTag">学号：</span>
+	<input type="text" placeholder="请填写你的学号" name="number1" class="input-text number">
+	</br>
+
+	<span class="formTag" name="college1">学院：</span>
+		<select class="college disabled">
+			<option value="农学院">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;农学院</option>
+			<option value="资源环境学院">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;资源环境学院</option>
+			<option value="生命科学学院">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;生命科学学院</option>
+			<option value="经济管理学院">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;经济管理学院</option>
+			<option value="工程学院">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;工程学院</option>
+			<option value="动物科学学院">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;动物科学学院</option>
+			<option value="兽医学院">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;兽医学院</option>
+			<option value="园艺学院">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;园艺学院</option>
+			<option value="食品学院">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;食品学院</option>
+			<option value="林学院">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;林学院</option>
+			<option value="人文与法学学院">&nbsp;&nbsp;&nbsp;&nbsp;人文与法学学院</option>
+			<option value="理学院">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;理学院</option>
+			<option value="信息学院、软件学院">信息学院、软件学院</option>
+			<option value="艺术学院">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;艺术学院</option>
+			<option value="外国语学院">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;外国语学院</option>
+			<option value="水利与土木工程学院">水利与土木工程学院</option>
+			<option value="公共管理学院">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;公共管理学院</option>
+			<option value="继续教育学院">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;继续教育学院</option>
+			<option value="研究生">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;研究生</option>
+		</select>
+		&nbsp;&nbsp;/&nbsp;&nbsp;
+		<select class="grade" name="grade1">
+			<option value="大一">大一</option>
+			<option value="大二">大二</option>
+			<option value="大三">大三</option>
+			<option value="大四">大四</option>
+		</select>
+	</br>
+
+	<span class="formTag formTagLong">联系方式：</span>
+	<input type="text" placeholder="长短号至少填写一个，短号优先" name="phoneLong1" class="input-text phoneLong">
+	&nbsp;&nbsp;/&nbsp;&nbsp;
+	<input type="text" placeholder="短号，优先填写" name="phoneShort1" class="input-text phoneShort">
+	</br>
+
+
+	<span class="formTag formTagLong">宿舍地址：</span>
+	<input type="text" placeholder="请参照“五山24栋409”格式填写,选填" name="address1" class="input-text address">
+	</br>
+
+	<span class="formTag">邮箱：</span>
+	<input type="text" placeholder="请在此处输入常用邮箱" name="e-mail1" class="input-text e-mail">
+	</br>
+
+
+	</div>
+
+	<div class="horizontal-divider" style="margin-top:10px"></div>
+	<div id="teammate2">
+
+	<!--头像--
+	<div class="head">
+		<div>
+			<div>
+				<span class="glyphicon glyphicon-picture"></span>
+			</div>
+		</div>
+		<p>点击上传你的头像，选填</p>
+	</div>
+	-->
+	<div class="member">队员二</div>
+
+	</br>
+
+	<span class="formTag">姓名：</span>
+	<input type="text" placeholder="请在此处输入您的姓名" name="name2" class="input-text name">
+	</br>
+
+	<span class="formTag">性别：</span>
+	<input type="radio" name="sex2" value="male" class="input-sex sex"  checked>&nbsp;&nbsp;男
+	<input type="radio" name="sex2" value="female" class="input-sex sex">&nbsp;&nbsp;女
+	</br>
+
+	<span class="formTag">学号：</span>
+	<input type="text" placeholder="请填写你的学号" name="number2" class="input-text number">
+	</br>
+
+	<span class="formTag" name="college2">学院：</span>
+		<select class="college disabled">
+			<option value="农学院">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;农学院</option>
+			<option value="资源环境学院">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;资源环境学院</option>
+			<option value="生命科学学院">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;生命科学学院</option>
+			<option value="经济管理学院">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;经济管理学院</option>
+			<option value="工程学院">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;工程学院</option>
+			<option value="动物科学学院">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;动物科学学院</option>
+			<option value="兽医学院">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;兽医学院</option>
+			<option value="园艺学院">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;园艺学院</option>
+			<option value="食品学院">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;食品学院</option>
+			<option value="林学院">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;林学院</option>
+			<option value="人文与法学学院">&nbsp;&nbsp;&nbsp;&nbsp;人文与法学学院</option>
+			<option value="理学院">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;理学院</option>
+			<option value="信息学院、软件学院">信息学院、软件学院</option>
+			<option value="艺术学院">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;艺术学院</option>
+			<option value="外国语学院">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;外国语学院</option>
+			<option value="水利与土木工程学院">水利与土木工程学院</option>
+			<option value="公共管理学院">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;公共管理学院</option>
+			<option value="继续教育学院">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;继续教育学院</option>
+			<option value="研究生">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;研究生</option>
+		</select>
+		&nbsp;&nbsp;/&nbsp;&nbsp;
+		<select class="grade" name="grade2">
+			<option value="大一">大一</option>
+			<option value="大二">大二</option>
+			<option value="大三">大三</option>
+			<option value="大四">大四</option>
+		</select>
+	</br>
+
+	<span class="formTag formTagLong">联系方式：</span>
+	<input type="text" placeholder="长短号至少填写一个，短号优先" name="phoneLong2" class="input-text phoneLong">
+	&nbsp;&nbsp;/&nbsp;&nbsp;
+	<input type="text" placeholder="短号，优先填写" name="phoneShort2" class="input-text phoneShort">
+	</br>
+
+
+	<span class="formTag formTagLong">宿舍地址：</span>
+	<input type="text" placeholder="请参照“五山24栋409”格式填写,选填" name="address2" class="input-text address">
+	</br>
+
+	<span class="formTag">邮箱：</span>
+	<input type="text" placeholder="请在此处输入常用邮箱" name="e-mail2" class="input-text e-mail">
+	</br>
+
+
+	</div>
+
+
+	<div class="horizontal-divider" style="margin-top:10px"></div>
+	<div id="teammate3">
+
+	<!--头像--
+	<div class="head">
+		<div>
+			<div>
+				<span class="glyphicon glyphicon-picture"></span>
+			</div>
+		</div>
+		<p>点击上传你的头像，选填</p>
+	</div>
+	-->
+
+	<div class="member">队员三</div>
+
+	</br>
+
+	<span class="formTag">姓名：</span>
+	<input type="text" placeholder="请在此处输入您的姓名" name="name3" class="input-text name">
+	</br>
+
+	<span class="formTag">性别：</span>
+	<input type="radio" name="sex3" value="male" class="input-sex sex"  checked>&nbsp;&nbsp;男
+	<input type="radio" name="sex3" value="female" class="input-sex sex">&nbsp;&nbsp;女
+	</br>
+
+	<span class="formTag">学号：</span>
+	<input type="text" placeholder="请填写你的学号" name="number3" class="input-text number">
+	</br>
+
+	<span class="formTag" name="college3">学院：</span>
+		<select class="college disabled">
+			<option value="农学院">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;农学院</option>
+			<option value="资源环境学院">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;资源环境学院</option>
+			<option value="生命科学学院">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;生命科学学院</option>
+			<option value="经济管理学院">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;经济管理学院</option>
+			<option value="工程学院">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;工程学院</option>
+			<option value="动物科学学院">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;动物科学学院</option>
+			<option value="兽医学院">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;兽医学院</option>
+			<option value="园艺学院">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;园艺学院</option>
+			<option value="食品学院">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;食品学院</option>
+			<option value="林学院">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;林学院</option>
+			<option value="人文与法学学院">&nbsp;&nbsp;&nbsp;&nbsp;人文与法学学院</option>
+			<option value="理学院">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;理学院</option>
+			<option value="信息学院、软件学院">信息学院、软件学院</option>
+			<option value="艺术学院">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;艺术学院</option>
+			<option value="外国语学院">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;外国语学院</option>
+			<option value="水利与土木工程学院">水利与土木工程学院</option>
+			<option value="公共管理学院">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;公共管理学院</option>
+			<option value="继续教育学院">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;继续教育学院</option>
+			<option value="研究生">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;研究生</option>
+		</select>
+		&nbsp;&nbsp;/&nbsp;&nbsp;
+		<select class="grade" name="grade3">
+			<option value="大一">大一</option>
+			<option value="大二">大二</option>
+			<option value="大三">大三</option>
+			<option value="大四">大四</option>
+		</select>
+	</br>
+
+	<span class="formTag formTagLong">联系方式：</span>
+	<input type="text" placeholder="长短号至少填写一个，短号优先" name="phoneLong3" class="input-text phoneLong">
+	&nbsp;&nbsp;/&nbsp;&nbsp;
+	<input type="text" placeholder="短号，优先填写" name="phoneShort3" class="input-text phoneShort">
+	</br>
+
+
+	<span class="formTag formTagLong">宿舍地址：</span>
+	<input type="text" placeholder="请参照“五山24栋409”格式填写,选填" name="address3" class="input-text address">
+	</br>
+
+	<span class="formTag">邮箱：</span>
+	<input type="text" placeholder="请在此处输入常用邮箱" name="e-mail3" class="input-text e-mail">
+	</br>
+
+
+	</div>
+
+	<div class="horizontal-divider"></div>
+	
+	<div class="member">紧急联系人资料填写</div>
+
+	</br>
+
+	<div>
+
+	<span class="formTag">姓名：</span>
+	<input type="text" placeholder="请在此处输入您的姓名" name="name" class="input-text name">
+	</br>
+
+	<span class="formTag formTagLong">联系方式：</span>
+	<input type="text" placeholder="长短号至少填写一个，短号优先" name="phoneLong" class="input-text phoneLong">
+	&nbsp;&nbsp;/&nbsp;&nbsp;
+	<input type="text" placeholder="短号，优先填写" name="phoneShort" class="input-text phoneShort">
+	</br>
+
+	</div>
+
+
+	</br>
 
 	<button class="btn btn-default btn-sm" type="reset" style="margin-left:35%;margin-right:50px">重新填写</button>
 	<button class="btn btn-primary btn-lg" type="submit">提交</button>
