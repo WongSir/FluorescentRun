@@ -6,9 +6,9 @@
 <meta name="author" content="dennisleung"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="stylesheet.css">
 <script src="jquery/jquery-1.11.1.min.js"></script>
-<script src="script.js"></script>
+<script src="javascript.js"></script>
 </head>
 <body>
 
@@ -16,7 +16,9 @@
 
 <div class="frame">
 
-	<canvas id="glow" style="width:300px;height:100px;position:absolute;z-index:1;left:100px;top:100px;"></canvas>
+	<canvas id="glow" style="width:300px;height:100px;display:inline-block;position:absolute;z-index:1;left:100px;top:100px;"></canvas>
+
+
 	<span class="tag">请选择报名类型：<p class="typeTips">（点击图标选择报名类型）</p></span>
 	<img src="individual.png" class="pic selectPic" value="individual">
 	<div class="vertical-devider">&nbsp;</div>
@@ -101,7 +103,7 @@
 	<span class="formTag formTagLong">联系方式：</span>
 	<input type="text" placeholder="长短号至少填写一个，短号优先" name="phoneLong" class="input-text phoneLong">
 	&nbsp;&nbsp;/&nbsp;&nbsp;
-	<input type="text" placeholder="短号，优先填写" name="phoneShort" class="input-text phoneShort" style="width:18.3%">
+	<input type="text" placeholder="此处填写短号" name="phoneShort" class="input-text phoneShort" style="width:18.3%">
 	</br>
 
 
@@ -182,7 +184,7 @@
 	<span class="formTag formTagLong">联系方式：</span>
 	<input type="text" placeholder="长短号至少填写一个，短号优先" name="phoneLong1" class="input-text phoneLong">
 	&nbsp;&nbsp;/&nbsp;&nbsp;
-	<input type="text" placeholder="短号，优先填写" name="phoneShort1" class="input-text phoneShort">
+	<input type="text" placeholder="此处填写短号" name="phoneShort1" class="input-text phoneShort">
 	</br>
 
 
@@ -261,7 +263,7 @@
 	<span class="formTag formTagLong">联系方式：</span>
 	<input type="text" placeholder="长短号至少填写一个，短号优先" name="phoneLong2" class="input-text phoneLong">
 	&nbsp;&nbsp;/&nbsp;&nbsp;
-	<input type="text" placeholder="短号，优先填写" name="phoneShort2" class="input-text phoneShort">
+	<input type="text" placeholder="此处填写短号" name="phoneShort2" class="input-text phoneShort">
 	</br>
 
 
@@ -342,7 +344,7 @@
 	<span class="formTag formTagLong">联系方式：</span>
 	<input type="text" placeholder="长短号至少填写一个，短号优先" name="phoneLong3" class="input-text phoneLong">
 	&nbsp;&nbsp;/&nbsp;&nbsp;
-	<input type="text" placeholder="短号，优先填写" name="phoneShort3" class="input-text phoneShort">
+	<input type="text" placeholder="此处填写短号" name="phoneShort3" class="input-text phoneShort">
 	</br>
 
 
@@ -366,13 +368,13 @@
 	<div>
 
 	<span class="formTag">姓名：</span>
-	<input type="text" placeholder="请在此处输入您的姓名" name="name" class="input-text name">
+	<input type="text" placeholder="请填写紧急联系人的姓名" name="name" class="input-text name">
 	</br>
 
 	<span class="formTag formTagLong">联系方式：</span>
 	<input type="text" placeholder="长短号至少填写一个，短号优先" name="phoneLong" class="input-text phoneLong">
 	&nbsp;&nbsp;/&nbsp;&nbsp;
-	<input type="text" placeholder="短号，优先填写" name="phoneShort" class="input-text phoneShort">
+	<input type="text" placeholder="此处填写短号" name="phoneShort" class="input-text phoneShort">
 	</br>
 
 	</div>
