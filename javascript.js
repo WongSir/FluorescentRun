@@ -2,10 +2,11 @@ var canvas;
 var context;
 var glowStart = true;
 var lighter = false;
-var type = "individual";
+var type = "个人";
 var picX;
 var picY;
 var selecting = false;
+var scrollTop = 0;
 
 $(document).ready(function(){
 	selectIndi();
@@ -19,7 +20,6 @@ window.onload = function(){
 	picX = pic.offset().left;
 	picY = pic.offset().top;
 	drawGlow(0);
-	//$("html").bind("click",coverClick);
 
 	$(".pic").mousedown(function(){
 		if(selecting == true){
@@ -37,8 +37,7 @@ window.onload = function(){
 			lighter = false;
 			canvas.show();
 			drawGlow(0);
-			//$("html").bind("click",coverClick);
-			if(type=="individual")
+			if(type=="个人")
 				selectIndi();
 			else
 				selectTeam();
@@ -65,6 +64,10 @@ window.onload = function(){
 
 	$(".groupNum").bind("change",numChange);
 
+	setTreaty();
+
+
+
 
 }
 
@@ -83,26 +86,6 @@ var setSelect = function(){
 }
 
 
-
-
-/*
-var coverClick = function(e){
-	pic = $($(".pic").get(0));
-	x = pic.offset().left;
-	y = pic.offset().top;
-	w = parseInt(pic.css("width"));
-	h = parseInt(pic.css("height"));
-	if(e.pageX>=x && e.pageX<=x+w && e.pageY>=y && e.pageY<=y+h){
-		//alert("sadas");
-		canvas.attr("width",canvas.width()).attr("height",canvas.height());
-		glowStart = false;
-		anotherPic = $(".pic:hidden");
-		anotherPic.show();
-		canvas.hide();
-		$("html").unbind();
-	}
-}
-*/
 
 var drawGlow = function(radius){
 	if(!glowStart) return;
@@ -135,6 +118,7 @@ var selectIndi = function(){
 	groupNum.prev("span").hide();
 	groupNum.next(".horizontal-divider").hide();
 	$("#leader").hide();
+	$("#emergency").show().prev(".horizontal-divider").show();
 	$("#teammate1").hide().prev(".horizontal-divider").hide();
 	$("#teammate2").hide().prev(".horizontal-divider").hide();
 	$("#teammate3").hide().prev(".horizontal-divider").hide();
@@ -146,6 +130,7 @@ var selectTeam = function(){
 	groupNum.prev("span").show();
 	groupNum.next(".horizontal-divider").show();
 	$("#leader").show();
+	$("#emergency").hide().prev(".horizontal-divider").hide();
 	numChange();
 }
 
@@ -173,6 +158,7 @@ var check = function(){
 	if(!checkNumber()) return false;
 	if(!checkPhoneNumber()) return false;
 	if(!checkEmail()) return false;
+	if(!checkTreaty()) return false;
 	linkToDB();
 	return false;
 }
@@ -251,10 +237,19 @@ var checkEmail = function(){
 }
 
 
+var checkTreaty = function(){
+	if($("#agreeTreaty").prop("checked")) return true;
+	else{
+		alert("你必须先同意活动相关条约方可报名！");
+		return false;
+	}
+}
+
+
 
 var linkToDB = function(){
 	message = "link.php?type=" + type;
-	if(type=="individual"){
+	if(type=="个人"){
 		inputName = $(".name:not(:hidden)");
 		message = message + "&name=" + inputName.eq(0).val();
 		message = message + "&ename=" + inputName.eq(1).val();
@@ -265,7 +260,10 @@ var linkToDB = function(){
 		inputCollege = $(".college:not(:hidden)");
 		message = message + "&college=" +inputCollege.eq(0).val();
 		inputGrade = $(".grade:not(:hidden)");
-		message = message + "&grade=" + inputGrade.eq(0).val();
+		if(inputGrade.eq(0).prev(".college").val()=="研究生")
+			message = message + "&grade=" + "";
+		else
+			message = message + "&grade=" + inputGrade.eq(0).val();
 		inputPhoneLong = $(".phoneLong:not(:hidden)");
 		message = message + "&phoneLong=" + inputPhoneLong.eq(0).val();
 		message = message + "&ephoneLong=" + inputPhoneLong.eq(1).val();
@@ -294,7 +292,10 @@ var linkToDB = function(){
 			inputCollege = $(".college:not(:hidden)");
 			message = message + "&college" + index + "=" + inputCollege.eq(i).val();
 			inputGrade = $(".grade:not(:hidden)");
-			message = message + "&grade" + index + "=" + inputGrade.eq(i).val();
+			if(inputGrade.eq(i).prev(".college").val()=="研究生")
+				message = message + "&grade" + index + "=" + "";
+			else
+				message = message + "&grade" + index + "=" + inputGrade.eq(i).val();
 			inputPhoneLong = $(".phoneLong:not(:hidden)");
 			message = message + "&phoneLong" + index + "=" + inputPhoneLong.eq(i).val();
 			inputPhoneShort = $(".phoneShort:not(:hidden)");
@@ -304,9 +305,11 @@ var linkToDB = function(){
 			inputEmail = $(".e-mail:not(:hidden)");
 			message = message + "&email" + index + "=" + inputEmail.eq(i).val();
 		}
+		/*
 		message = message + "&ename=" + inputName.eq(i).val();
 		message = message + "&ephoneLong=" + inputPhoneLong.eq(i).val();
 		message = message + "&ephoneShort=" + inputPhoneShort.eq(i).val();
+		*/
 	}
 
 
@@ -330,4 +333,43 @@ var linkToDB = function(){
 	}
 	xmlhttp.open("GET",message,true);
 	xmlhttp.send();
+}
+
+
+var setTreaty = function(){
+	$("#showTreaty").click(function(){
+		$(".treaty").css("width",$(document).width());
+		th = parseInt($(".treaty").css("height"));
+		dh = parseInt($(document).height());
+		//alert(dh);
+		sh = th>dh?th:dh;
+		sh += 200;
+		$(".treaty").css("height",sh).css("background-color","rgba(0,0,0,0.95)");
+		$(".treaty").show();
+		scrollTop = $(document).scrollTop();
+		//alert(scrollTop);
+		scrollTo(0,0);
+	})
+
+	$(".treaty a").click(function(){
+		$(".treaty").hide();
+		scrollTo(0,scrollTop);
+	})
+
+	$(".treaty .btn-success").click(function(){
+		//alert("yes");
+		$("#agreeTreaty").prop("checked",true);
+		$(".treaty").hide();
+		scrollTo(0,scrollTop);
+	})
+
+	$(".treaty .btn-danger").click(function(){
+		//alert("no");
+		$("#agreeTreaty").prop("checked",false);
+		$(".treaty").hide();
+		scrollTo(0,scrollTop);
+	})
+
+
+
 }
