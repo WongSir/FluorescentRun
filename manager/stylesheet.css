@@ -1,0 +1,42 @@
+body{
+	font-size:18px;
+}
+
+input{
+	text-align:center;
+}
+
+.frame{
+	padding:3% 13%;
+}
+
+#college,#name,#number{
+	display:inline-block;
+}
+
+#name{
+	width:20%;
+}
+
+#number{
+	width:20%;
+}
+
+.groupTag{
+	color:#fff;
+	border: 1px solid #efefef;
+    float: right;
+    padding: 5px 20px;
+    margin-top: -15px;
+    border-bottom-color: #fff;
+}
+
+.position{
+	display:inline-block;
+	margin-right:30px;
+	margin-top:8px;
+}
+
+hr{
+	margin-bottom:7px;
+}

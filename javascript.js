@@ -9,6 +9,7 @@ var selecting = false;
 var scrollTop = 0;
 
 $(document).ready(function(){
+	loadCSS();
 	selectIndi();
 });
 
@@ -70,6 +71,28 @@ window.onload = function(){
 
 
 }
+
+//非常不科学的浏览器检测
+var loadCSS = function(){
+	userAgent = navigator.userAgent.toLowerCase();
+	temp = $("link").eq(2);
+	//alert(userAgent);
+	if(userAgent.indexOf("chrome")!=-1){
+		//alert("chrome");
+		return;
+	}
+	else if(userAgent.indexOf("safari")!=-1){
+		//alert("safari");
+		temp.attr("href","css/safari.css");
+		return;
+	}
+	else if(userAgent.indexOf("mozilla")!=-1){
+		//alert("mozilla");
+		temp.attr("href","css/ie.css");
+		return;
+	}
+}
+
 
 var setSelect = function(){
 	option = $(".grade option");
@@ -338,36 +361,31 @@ var linkToDB = function(){
 
 var setTreaty = function(){
 	$("#showTreaty").click(function(){
-		$(".treaty").css("width",$(document).width());
-		th = parseInt($(".treaty").css("height"));
-		dh = parseInt($(document).height());
-		//alert(dh);
-		sh = th>dh?th:dh;
-		sh += 200;
-		$(".treaty").css("height",sh).css("background-color","rgba(0,0,0,0.95)");
+		$(".treaty").css("width",$(window).width()+20);
+		$(".treaty").css("height",$(window.screen.availHeight));
+		//alert(window.screen.availHeight);
+		$(".treaty").css("top",$(document).scrollTop());
+		$("html").css("overflow","hidden");
 		$(".treaty").show();
-		scrollTop = $(document).scrollTop();
-		//alert(scrollTop);
-		scrollTo(0,0);
 	})
 
 	$(".treaty a").click(function(){
 		$(".treaty").hide();
-		scrollTo(0,scrollTop);
+		$("html").css("overflow","auto");
 	})
 
 	$(".treaty .btn-success").click(function(){
 		//alert("yes");
 		$("#agreeTreaty").prop("checked",true);
 		$(".treaty").hide();
-		scrollTo(0,scrollTop);
+		$("html").css("overflow","auto");
 	})
 
 	$(".treaty .btn-danger").click(function(){
 		//alert("no");
 		$("#agreeTreaty").prop("checked",false);
 		$(".treaty").hide();
-		scrollTo(0,scrollTop);
+		$("html").css("overflow","auto");
 	})
 
 

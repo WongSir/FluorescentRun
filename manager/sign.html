@@ -1,0 +1,108 @@
+<!DOCTYPE>
+<html>
+<head>
+<title>荧光夜跑-组委会竞选</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<meta name="author" content="dennisleung"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css">
+<link rel="stylesheet" href="stylesheet.css">
+<script src="../jquery/jquery-1.11.1.min.js"></script>
+<script src="javascript.js"></script>
+</head>
+<body>
+
+<div class="container">
+	<div class="col-md-12 frame">
+		<span style="margin-left:5%">
+			学院：
+			<select id="college">
+				<option value="农学院">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;农学院</option>
+				<option value="资源环境学院">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;资源环境学院</option>
+				<option value="生命科学学院">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;生命科学学院</option>
+				<option value="经济管理学院">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;经济管理学院</option>
+				<option value="工程学院">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;工程学院</option>
+				<option value="动物科学学院">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;动物科学学院</option>
+				<option value="兽医学院">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;兽医学院</option>
+				<option value="园艺学院">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;园艺学院</option>
+				<option value="食品学院">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;食品学院</option>
+				<option value="林学院">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;林学院</option>
+				<option value="人文与法学学院">&nbsp;&nbsp;&nbsp;&nbsp;人文与法学学院</option>
+				<option value="理学院">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;理学院</option>
+				<option value="信息学院、软件学院">信息学院、软件学院</option>
+				<option value="艺术学院">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;艺术学院</option>
+				<option value="外国语学院">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;外国语学院</option>
+				<option value="水利与土木工程学院">水利与土木工程学院</option>
+				<option value="公共管理学院">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;公共管理学院</option>
+				<option value="继续教育学院">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;继续教育学院</option>
+				<option value="研究生">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;研究生</option>
+			</select>
+		</span>
+		&nbsp;&nbsp;
+		<span>
+			姓名：<input type="text" id="name">
+		</span>
+		&nbsp;&nbsp;
+		<span>
+			学号：<input type="text" id="number">
+		</span>
+		<br>
+		<br>
+		<p style="margin-left:28%">请选择感兴趣的职位：(职位个数0&lt;x&lt;=3)</p>
+		<br>
+		<div class="groupTag" style="background-color:rgb(0,146,199)">策划组</div>
+		<hr>
+		<span class="position"><input type="checkbox" name="position" value="策划组组长">&nbsp;组长(财务处监督、智囊团监督，兼任宿舍走访队副队长，协调各方面工作)</span>
+		<span class="position"><input type="checkbox" name="position" value="策划组副组长">&nbsp;副组长(智囊团队长)</span>
+		<span class="position"><input type="checkbox" name="position" value="策划组秘书长">&nbsp;秘书长(财务处队长)</span>
+		<br>
+		<span class="position"><input type="checkbox" name="position" value="财务处队员">&nbsp;财务处队员</span>
+		<span class="position"><input type="checkbox" name="position" value="智囊团团员">&nbsp;智囊团团员</span>
+		<br><br>
+		<div class="groupTag" style="background-color:rgb(159,224,246)">媒体摄影组</div>
+		<hr>
+		<span class="position"><input type="checkbox" name="position" value="媒体摄影组组长">&nbsp;组长</span>
+		<span class="position"><input type="checkbox" name="position" value="媒体摄影组副组长">&nbsp;副组长</span>
+		<br>
+		<span class="position"><input type="checkbox" name="position" value="媒体摄影组组员">&nbsp;组员</span>
+		<br><br>
+		<div class="groupTag" style="background-color:rgb(243,229,154)">宣传组</div>
+		<hr>
+		<span class="position"><input type="checkbox" name="position" value="宣传组组长">&nbsp;组长(宿舍走访队队长)</span>
+		<span class="position"><input type="checkbox" name="position" value="网络宣传队队长">&nbsp;网络宣传队队长</span>
+		<span class="position"><input type="checkbox" name="position" value="海报视频制作队队长">&nbsp;海报视频制作队队长</span>
+		<br>
+		<span class="position"><input type="checkbox" name="position" value="网络宣传队队员">&nbsp;网络宣传队队员</span>
+		<span class="position"><input type="checkbox" name="position" value="海报视频制作队队员">&nbsp;海报视频制作队队员</span>
+		<br><br>
+		<div class="groupTag" style="background-color:rgb(243,181,155)">外联组</div>
+		<hr>
+		<span class="position"><input type="checkbox" name="position" value="外联组组长">&nbsp;组长</span>
+		<span class="position"><input type="checkbox" name="position" value="外联组副组长">&nbsp;副组长</span>
+		<br>
+		<span class="position"><input type="checkbox" name="position" value="外联组组员">&nbsp;组员</span>
+		<br><br>
+		<div class="groupTag" style="background-color:rgb(242,156,156)">实践组</div>
+		<hr>
+		<span class="position"><input type="checkbox" name="position" value="实践组组长">&nbsp;组长</span>
+		<span class="position"><input type="checkbox" name="position" value="站点服务队队长">&nbsp;站点服务队队长</span>
+		<span class="position"><input type="checkbox" name="position" value="站点服务队副队长">&nbsp;站点服务队副队长</span>
+		<span class="position"><input type="checkbox" name="position" value="骑行巡逻队队长">&nbsp;骑行巡逻队队长(兼任机动队队长)</span>
+		<span class="position"><input type="checkbox" name="position" value="前台紧急服务中心队长">&nbsp;前台紧急服务中心队长</span>
+		<span class="position"><input type="checkbox" name="position" value="医疗救护队队长">&nbsp;医疗救护队队长</span>
+		<br>
+		<span class="position"><input type="checkbox" name="position" value="站点服务队队员">&nbsp;站点服务队队员</span>
+		<span class="position"><input type="checkbox" name="position" value="骑行巡逻队队员">&nbsp;骑行巡逻队队员</span>
+		<span class="position"><input type="checkbox" name="position" value="前台紧急服务中心队员">&nbsp;前台紧急服务中心队员</span>
+		<span class="position"><input type="checkbox" name="position" value="医疗救护队队员">&nbsp;医疗救护队队员队员</span>
+		<span class="position"><input type="checkbox" name="position" value="机动队队员">&nbsp;机动队队员</span>
+		<br>
+		<hr>
+		<br>	
+		<button class="btn btn-primary" style="margin-left:46%">提交</button>
+	</div>
+</div>
+
+
+</body>
+</html>

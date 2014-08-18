@@ -1,0 +1,26 @@
+body{
+	font-size:20px;
+	padding-top:1%;
+	padding-bottom:2%;
+}
+
+.text{
+	text-align:center;
+}
+
+.container{
+	float:none;
+}
+
+table{
+ 	border-collapse:collapse;
+  	border:none;
+  	table-layout:fixed;
+  	width:100%;
+  	text-align:center;
+  	word-wrap:break-word;
+  	word-break:break-all;
+}
+td,th{
+  	border:solid#000 1px;
+}
