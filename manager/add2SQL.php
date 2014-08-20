@@ -5,7 +5,7 @@
 策划组副组长  cehuaSLeader
 策划组秘书长  cehuaSecretary
 财务处队员  financeMem
-智囊团团员	ideaMem
+智囊团队员	ideaMem
 媒体摄影组组长  meitiLeader
 媒体摄影组副组长  meitiSLeader
 媒体摄影组组员 meitiMem
@@ -48,7 +48,7 @@ if($mysqli){
 			case "策划组副组长":$temp="cehuaSLeader";break;
 			case "策划组秘书长":$temp="cehuaSecretary";break;
 			case "财务处队员":$temp="financeMem";break;
-			case "智囊团团员":$temp="ideaMem";break;
+			case "智囊团队员":$temp="ideaMem";break;
 			case "媒体摄影组组长":$temp="meitiLeader";break;
 			case "媒体摄影组副组长":$temp="meitiSLeader";break;
 			case "媒体摄影组组员":$temp="meitiMem";break;

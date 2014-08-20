@@ -12,7 +12,6 @@ var onReady = false;
 $(document).ready(function(){
 //	loadCSS();
 	selectIndi();
-
 });
 
 window.onload = function(){
@@ -76,7 +75,7 @@ window.onload = function(){
 	cY = canvas.offset().top;
 	tX = (2*dX-cX-spX)*0.83;
 	tY = (spY-cY)*2.5;
-
+	showTreaty();
 }
 
 
@@ -393,6 +392,11 @@ var linkToDB = function(){
 		xmlhttp = new ActiveXobject("Microsoft.XMLHTTP");
 	}
 	xmlhttp.onreadystatechange = function(){
+		if(xmlhttp.readyState==0){
+			$(".treaty").html("<h3 style=\"color:#fff;text-align:center;margin-top:40%;color:rgb(100,255,186);margin-left:0px;font-weight:100\"></h3><div style=\"width:80%;margin-left:10%;height:1px;background-color:#333\"><div style=\"width:50%;height:1px;background-color:rgb(100,255,186)\"></div></div>")
+			showTreaty();
+		}
+		changeProgress(xmlhttp.readyState);
 		if(xmlhttp.readyState==4 && xmlhttp.status==200){
 			$(".frame").html("<div class=\"fetch\"><h1><p>Congratulations!<p></h1><h3><p>你的报名已提交</p></h3></div>");
 			canvas.hide();
@@ -405,11 +409,7 @@ var linkToDB = function(){
 
 var setTreaty = function(){
 	$("#showTreaty").click(function(){
-		$(".treaty").css("width",$(window).width()+20);
-		$(".treaty").css("height",$(window.screen.availHeight));
-		$(".treaty").css("top",$(document).scrollTop());
-		$("html").css("overflow","hidden");
-		$(".treaty").show();
+		showTreaty();
 	})
 
 	$(".treaty a").click(function(){
@@ -433,4 +433,20 @@ var setTreaty = function(){
 
 
 
+}
+
+
+var showTreaty = function(){
+	$(".treaty").css("width",$(window).width()+20);
+	$(".treaty").css("height",$(window.screen.availHeight));
+	$(".treaty").css("top",$(document).scrollTop());
+	$("html").css("overflow","hidden");
+	$(".treaty").show();
+}
+
+
+var changeProgress = function(i){
+	digit = 100*(i/4);
+	$(".treaty div div").css("width",digit+"%");
+	$(".treaty h3").html(digit+"%");
 }
