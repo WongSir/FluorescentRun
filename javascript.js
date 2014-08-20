@@ -3,23 +3,22 @@ var context;
 var glowStart = true;
 var lighter = false;
 var type = "个人";
-var picX;
-var picY;
 var selecting = false;
 var scrollTop = 0;
+var tX = -100;
+var tY = -100;
+var onReady = false;
 
 $(document).ready(function(){
-	loadCSS();
+//	loadCSS();
 	selectIndi();
+
 });
 
 window.onload = function(){
 	canvas = $("#glow");
 	context = canvas.get(0).getContext("2d");
-	pic = $($(".pic").get(0));
-	canvas.css("left",pic.offset().left-20).css("top",pic.offset().top-20);
-	picX = pic.offset().left;
-	picY = pic.offset().top;
+	canvasPos();
 	drawGlow(0);
 
 	$(".pic").mousedown(function(){
@@ -28,7 +27,7 @@ window.onload = function(){
 			sPic = $(this);
 			hPic = sPic.siblings("img");
 			hPic.hide();
-			divider = $(".vertical-devider");
+			divider = $(".vertical-divider");
 			sPic.insertBefore(divider);
 			hPic.insertAfter(divider);
 			sPic.removeClass("hiddenPic").addClass("selectPic");
@@ -36,6 +35,7 @@ window.onload = function(){
 			type = sPic.attr("value"); 
 			glowStart = true;
 			lighter = false;
+			canvasPos();
 			canvas.show();
 			drawGlow(0);
 			if(type=="个人")
@@ -48,7 +48,7 @@ window.onload = function(){
 			canvas.attr("width",canvas.width()).attr("height",canvas.height());
 			glowStart = false;
 			anotherPic = $(".pic:hidden");
-			anotherPic.show();
+			anotherPic.css("display","inline-block");
 			canvas.hide();
 		}
 	})
@@ -67,36 +67,41 @@ window.onload = function(){
 
 	setTreaty();
 
-
-
+	sPic = $(".pic:not(:hidden)");
+	spX = sPic.offset().left;
+	spY = sPic.offset().top;
+	divider = $(".vertical-divider");
+	dX = divider.offset().left;
+	cX = canvas.offset().left;
+	cY = canvas.offset().top;
+	tX = (2*dX-cX-spX)*0.83;
+	tY = (spY-cY)*2.5;
 
 }
 
-//非常不科学的浏览器检测
-var loadCSS = function(){
-	userAgent = navigator.userAgent.toLowerCase();
-	temp = $("link").eq(2);
-	//alert(userAgent);
-	if(userAgent.indexOf("chrome")!=-1){
-		//alert("chrome");
-		return;
-	}
-	else if(userAgent.indexOf("safari")!=-1){
-		//alert("safari");
-		temp.attr("href","css/safari.css");
-		return;
-	}
-	else if(userAgent.indexOf("mozilla")!=-1){
-		//alert("mozilla");
-		temp.attr("href","css/ie.css");
-		return;
-	}
+
+var canvasPos = function(){
+	pic = $(".pic:not(:hidden)");
+	//alert(pic.offset().top);
+	canvas.css("left",pic.offset().left-20);
+	canvas.css("top",pic.offset().top-20);
 }
 
 
 var setSelect = function(){
 	option = $(".grade option");
 	select = $(".grade")
+	opWidth = parseInt(select.css("width"));
+	opFontWidth = parseInt(select.css("font-size"));
+	spaceNum = Math.floor((opWidth-2*opFontWidth)/opFontWidth*1.6);
+	space = "";
+	for(i = 0;i<spaceNum;i++)
+		space += "&nbsp;";
+	option.each(function(){
+		$(this).html(space+$(this).html());
+	});
+	select = $(".groupNum");
+	option = select.children("option");
 	opWidth = parseInt(select.css("width"));
 	opFontWidth = parseInt(select.css("font-size"));
 	spaceNum = Math.floor((opWidth-2*opFontWidth)/opFontWidth*1.6);
@@ -127,9 +132,9 @@ var drawGlow = function(radius){
 	context.arc(x,y,parseInt(pic.css("width"))/2-3,0,Math.PI*2,false);
 	context.closePath();
 	context.font = "23px helvetica";
-	context.fillText(type,x+105,y+9);
+	context.fillText(type,tX,tY);
 	context.stroke();
-	if(radius>=20) lighter = true;
+	if(radius>=15) lighter = true;
 	if(radius<=0) lighter = false;
 	if(lighter) radius-=3;
 	else radius+=3;
@@ -177,12 +182,8 @@ var numChange = function(){
 
 var check = function(){
 	$(".error").removeClass("error");
-	if(!checkName()) return false;
 	if(!checkNumber()) return false;
-	if(!checkPhoneNumber()) return false;
-	if(!checkEmail()) return false;
-	if(!checkTreaty()) return false;
-	linkToDB();
+	if(!checkRe()) return false;
 	return false;
 }
 
@@ -214,6 +215,48 @@ var checkNumber = function(){
 	}
 	return true;
 }
+
+
+var checkRe = function(){
+	inputNumber = $(".number:not(:hidden)");
+	numberOfMem = new Array();
+	for(i=0;i<inputNumber.length;i++)
+		numberOfMem.push(inputNumber.eq(i).val());
+	if(window.XMLHttpRequest){
+		xmlhttp = new XMLHttpRequest();
+	}
+	else{
+		xmlhttp = new ActiveXobject("Microsoft.XMLHTTP");
+	}
+	xmlhttp.onreadystatechange = function(){
+		if(xmlhttp.readyState==4 && xmlhttp.status==200){
+			if(xmlhttp.responseText!=""){
+				alert("学号 "+xmlhttp.responseText+" 已经报名，请勿重复报名！");
+				for(i=0;i<numberOfMem.length;i++)
+					if(numberOfMem[i]==xmlhttp.responseText)
+						break;
+					//alert(i);
+				inputNumber.eq(i).addClass("error").focus();
+				return false;
+			}
+			else{
+				if(!checkName()) return false;
+				if(!checkPhoneNumber()) return false;
+				if(!checkEmail()) return false;
+				if(!checkTreaty()) return false;
+				//alert("dd");
+				linkToDB();
+				return true;
+			}
+		}
+	}
+	xmlhttp.open("GET","checkRe.php?numberOfMem="+numberOfMem,true);
+	xmlhttp.send();
+	//return true;
+}
+
+
+
 
 var checkPhoneNumber = function(){
 	reg=/^[0-9]*$/;
@@ -351,7 +394,8 @@ var linkToDB = function(){
 	}
 	xmlhttp.onreadystatechange = function(){
 		if(xmlhttp.readyState==4 && xmlhttp.status==200){
-			$(".frame").html("<p style=\"color:#fff;font-size:50px;font-family:helvetica;margin:10% 25%\"></br>Congratulations!</p><p style=\"color:#fff;font-size:20px;margin-left:40%\">" +xmlhttp.responseText + "</p>");
+			$(".frame").html("<div class=\"fetch\"><h1><p>Congratulations!<p></h1><h3><p>你的报名已提交</p></h3></div>");
+			canvas.hide();
 		}
 	}
 	xmlhttp.open("GET",message,true);
@@ -363,7 +407,6 @@ var setTreaty = function(){
 	$("#showTreaty").click(function(){
 		$(".treaty").css("width",$(window).width()+20);
 		$(".treaty").css("height",$(window.screen.availHeight));
-		//alert(window.screen.availHeight);
 		$(".treaty").css("top",$(document).scrollTop());
 		$("html").css("overflow","hidden");
 		$(".treaty").show();

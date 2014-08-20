@@ -1,5 +1,6 @@
 body{
 	font-size:18px;
+	padding-top:2%;
 }
 
 input{
@@ -7,6 +8,7 @@ input{
 }
 
 .frame{
+	margin-top:0px;
 	padding:3% 13%;
 }
 
@@ -39,4 +41,71 @@ input{
 
 hr{
 	margin-bottom:7px;
+}
+
+@media(min-width:1200px){
+	.collegeSpna{
+		margin-left:1%;
+	}
+}
+
+@media(max-width:1199px){
+	.collegeSpan,.nameSpan,.numberSpan{
+		display:block;
+		margin-bottom:1%;
+		margin-left: 11%;
+	}
+	.info select{
+		width:70%;
+	}
+	.info input{
+		width:70%!important;
+	}
+}
+
+@media(max-width:500px){
+	.collegeSpan,.nameSpan,.numberSpan{
+		display:block;
+		margin-bottom:1%;
+		margin-left: 2%;
+	}
+	.info select{
+		width:70%;
+	}
+	.info input{
+		width:70%!important;
+	}
+	.frame h3{
+		font-size:20px;
+		margin-bottom:10%!important;
+	}
+
+}
+
+
+@media(max-width:350px){
+	.fetch h1{
+		font-size:20px!important;
+	}
+}
+
+
+.frame h3{
+	text-align:center;
+	margin-top: -2%;
+	margin-bottom: 4%;
+}
+
+.fetch{
+	width:100%;
+	text-align:center;
+	color:#000;
+	font-family:helvetica;
+	padding:10%;
+}
+
+@media(min-width:900px){
+	.fetch h1{
+		font-size:65px!important;
+	}
 }

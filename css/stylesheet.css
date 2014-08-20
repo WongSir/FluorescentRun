@@ -1,8 +1,178 @@
 .frame{
 	margin:10px auto 20px auto;
-	width:850px;
-	padding:0px 50px 20px 50px;
 	background-color:rgba(1,8,15,0.67);
+	padding:0px 10px 20px 10px;
+	font-size:18px;
+}
+
+img{
+	display:inline-block;
+}
+
+@media(min-width:992px){
+	.tag{
+		width:33.33%!important;
+	}
+	.picOption{
+		margin-top:2.7%;
+	}
+	.vertical-divider{
+		margin-left:25%!important;
+	}
+	form{
+		margin-top:7%!important;
+	}
+}
+
+@media(max-width:991px){
+	.vertical-divider{
+		margin-left:50%!important;
+		margin-top:5px!important;
+		margin-right:0px;
+	}
+}
+
+@media(min-width:900px){
+	.frame{
+		width:850px;
+		padding:0px 50px 20px 50px;
+		font-size:19px;
+	}
+	.grade{
+	width:21.4%;
+	}
+	.fetch h1{
+		font-size:65px!important;
+	}
+}
+
+
+@media(max-width:899px){
+	select{
+		padding:0px!important;
+	}
+	input[type="checkbox"]{
+		display:inline-block;
+	}
+	.college{
+		width:28%;
+	}
+	.grade{
+		width:23.2%;
+	}
+}
+
+
+@media(max-width:500px){
+	.frame{
+		padding:0px 0px 10px 0px;
+		margin:10px 5px 20px 5px;
+		font-size:16px;
+	}
+
+	.tag{
+		float:none;
+		display:block!important;
+	}
+	.formTag{
+		margin:2% 0px 4% 0px!important;
+		display:block;
+		text-align:center;
+	}
+	input{
+		display:block;
+		margin:0px auto;
+		margin-bottom:5%;
+	}
+	input[type="radio"]{
+		display: inline-block;
+		margin-left:0px!important;
+	}
+
+	input[value="女"]{
+		margin-left:30%!important;
+	}
+	.formSpan{
+		margin:0px auto;
+		display:block;
+	}
+	.phoneLong,.phoneShort{
+		display:inline-block;
+	}
+	.phoneLong{
+		width:50%!important;
+	}
+	.phoneShort{
+		width:30%!important;
+	}
+	.college{
+		width:50%;
+		margin-left:10%;
+	}
+	.phoneLong{
+		margin-left:7%;
+	}
+	select{
+		margin-bottom:5%;
+	}
+	.btnGroup{
+		display:block;
+		margin-left:20%;
+	}
+	input[type="checkbox"]{
+		margin-left:25%!important;
+		margin-bottom:8%;
+	}
+	.sexSpan span:first-child{
+		float:left;
+		margin-left:20%;
+	}
+	.sexSpan>span:last-child{
+		width:60px;
+		float:right;
+		margin-right:20%;
+	}
+	.sexSpan>span:last-child>span{
+		display:inline-block;
+	}
+	.groupNum{
+		margin-left:40%;
+		width:20%!important;
+	}
+	.treaty .btn-success{
+		margin-left:10%!important;
+	}
+	.treaty .btn-danger{
+		margin-right:10%!important;
+	}
+
+}
+
+@media(min-width:501px){
+	.formTag{
+		display:inline-block;
+	}
+}
+
+@media(max-width:685px) and (min-width:501px){
+	.btnGroup{
+		display:block;
+		margin-left:30%;
+	}
+	input[type="checkbox"]{
+		margin-left:35%!important;
+		margin-bottom:8%;
+	}
+}
+
+
+.container{
+	float:none;
+}
+
+
+.title{
+	text-align:center;
 }
 
 h2{
@@ -30,51 +200,48 @@ input{
 
 
 .tag{
-	display:inline-block;
-	margin-top:40px;
-	margin-left:50px;
-	font-size:19px;
+	margin-top:30px;
 	color:#fff;
+	text-align:center;
+	margin: 4% auto 0 auto!important;
+	width:100%;
 }
 
-.vertical-devider{
+.vertical-divider{
+	display:inline-block;
 	height:55px;
 	width:1px;
-	margin-top:-10%;
-	margin-left:50%;
 	border-right:1px solid #fff;
+	margin:0 auto 0 auto;
 }
 
 .pic{
 	position:absolute;
 	width:50px;
 	height:50px;
-	margin-top:2%;
+	margin-top:1%;
 	z-index:10;
 	display:inline-block;
 }
 
+/*
 .type{
 	font-family:helvetica;
 	display:inline-block;
 	margin-top:-43px;
 	margin-left:54%;
-	font-size:23px;
 	color:#4dffba;
 }
-
+*/
 
 form{
 	width:100%;
 	margin:-20px auto 20px auto;
 	padding-top:20px;
-	font-size:19px;
 	color:#fff;
 }
 
 .formTag{
-	display:inline-block;
-	font-size:19px;
 	color:#fff;
 	margin:0px 20px 20px 15%;
 }
@@ -107,10 +274,6 @@ select{
 	border:1px solid #bbb;
 	text-align:center;
 	color:#000;
-}
-
-.grade{
-	width:21.4%;
 }
 
 option{
@@ -202,7 +365,6 @@ option{
 	font-weight:100;
 	font-size:15px;
 	color:#aaa;
-	margin-left:-11%;
 }
 
 #showTreaty{
@@ -219,6 +381,7 @@ option{
 .treaty{
 	overflow:auto;
 	padding:20px 10%;
+	padding-bottom:10%;
 	position:absolute;
 	top:0px;
 	z-index:100;
@@ -247,4 +410,12 @@ option{
 	color:#fff;
 	font-family:Arial;
 	text-decoration:none;
+}
+
+.fetch{
+	width:100%;
+	text-align:center;
+	color:#fff;
+	font-family:helvetica;
+	padding:10%;
 }

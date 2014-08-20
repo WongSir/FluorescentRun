@@ -4,6 +4,7 @@ var number;
 
 
 window.onload = function(){
+	setSelect();
 	$("button").click(function(){
 		if(!checkName()) return false;
 		if(!checkNumber()) return false;
@@ -27,7 +28,7 @@ window.onload = function(){
 				else{
 					xmlhttp.onreadystatechange = function(){
 						if(xmlhttp.readyState==4 && xmlhttp.status==200){
-							$(".frame").html("<center style=\"font-size:60px;margin-top:14%;\">Congratulations!</center>");
+							$(".frame").html("<div class=\"fetch\"><h1><p>Congratulations!<p></h1><h3><br><p>你的报名已提交</p></h3></div>");
 						}
 					}
 					position = new Array();
@@ -81,4 +82,14 @@ var checkSelect = function(){
 		return false;
 	}
 	return true;
+}
+
+
+var setSelect = function(){
+	option = $("#college option");
+	select = $("#college");
+	opWidth = parseInt(option.css("font-size"))*9.5;
+	seWidth = parseInt(select.css("width"));
+	//alert((seWidth-opWidth)/2);
+	select.css("padding-left",(seWidth-opWidth)/2);
 }

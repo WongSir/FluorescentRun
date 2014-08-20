@@ -1,10 +1,33 @@
-.selectPic{
-	margin-left:4.2%;
-	display:inline-block!important;
+@media(min-width:992px){
+
+	.selectPic{
+		margin-left:4.2%;
+	}
+	.hiddenPic{
+		display:none;
+		margin-top:1%;
+		margin-left:10%;
+	}
 }
 
-.hiddenPic{
-	display:none;
-	margin-top:-3.8%;
-	margin-left:31%;
+@media(max-width:991px){
+	.selectPic{
+		margin-left:35%;
+		display:inline-block;
+	}
+
+	.hiddenPic{
+		display:none;
+		margin-left:6.7%;
+	}
+}
+
+@media(max-width:760px){
+	.selectPic{
+		margin-left:20%;
+	}
+
+	.hiddenPic {
+		margin-left:20%;
+	}
 }
