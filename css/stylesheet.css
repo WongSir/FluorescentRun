@@ -145,6 +145,9 @@ img{
 	.treaty .btn-danger{
 		margin-right:10%!important;
 	}
+	.treaty a{
+		margin-right:0px!important;
+	}
 
 }
 
@@ -193,6 +196,9 @@ body{
 	padding-top:15px;
 }
 
+html{
+	overflow-x:hidden;
+}
 
 input{
 	text-align:center;
@@ -224,15 +230,6 @@ input{
 	display:inline-block;
 }
 
-/*
-.type{
-	font-family:helvetica;
-	display:inline-block;
-	margin-top:-43px;
-	margin-left:54%;
-	color:#4dffba;
-}
-*/
 
 form{
 	width:100%;
@@ -378,19 +375,30 @@ option{
 }
 
 
-.treaty{
+.treaty,.progress{
 	overflow:auto;
 	padding:20px 10%;
 	padding-bottom:10%;
 	position:absolute;
 	top:0px;
-	z-index:100;
-	height:100%;
 	width:100%;
+	height:100%;
 	background-color:rgba(0,0,0,0.95);
 	display:none;
 	color:#efefef;
 	font-size:17px;
+	left:0px;
+	top:0px;
+}
+
+.treaty{
+	z-index:100;
+}
+
+.progress{
+	z-index:101;
+	font-weight:100;
+	text-align:center;
 }
 
 .treaty h3{

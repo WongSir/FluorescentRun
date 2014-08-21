@@ -8,10 +8,14 @@ var scrollTop = 0;
 var tX = -100;
 var tY = -100;
 var onReady = false;
+var htmlTop;
+var mobile = false;
+
 
 $(document).ready(function(){
-//	loadCSS();
 	selectIndi();
+	//platCheck();
+	//alert(mobile);
 });
 
 window.onload = function(){
@@ -75,9 +79,31 @@ window.onload = function(){
 	cY = canvas.offset().top;
 	tX = (2*dX-cX-spX)*0.83;
 	tY = (spY-cY)*2.5;
+
+	if(parseInt($("html").css("width"))<=500){
+		mobile = true;
+	}
+
+	//alert($("html").css("width"));
 	showTreaty();
 }
 
+/*
+var platCheck = function(){
+        sUserAgent = navigator.userAgent.toLowerCase();
+        bIsIpad = sUserAgent.match(/ipad/i) == "ipad";
+        bIsIphoneOs = sUserAgent.match(/iphone os/i) == "iphone os";
+        bIsMidp = sUserAgent.match(/midp/i) == "midp";
+        bIsUc7 = sUserAgent.match(/rv:1.2.3.4/i) == "rv:1.2.3.4";
+        bIsUc = sUserAgent.match(/ucweb/i) == "ucweb";
+        bIsAndroid = sUserAgent.match(/android/i) == "android";
+        bIsCE = sUserAgent.match(/windows ce/i) == "windows ce";
+        bIsWM = sUserAgent.match(/windows mobile/i) == "windows mobile";
+        if (bIsIpad || bIsIphoneOs || bIsMidp || bIsUc7 || bIsUc || bIsAndroid || bIsCE || bIsWM) {
+            mobile = true;
+        }
+}
+*/
 
 var canvasPos = function(){
 	pic = $(".pic:not(:hidden)");
@@ -228,9 +254,17 @@ var checkRe = function(){
 		xmlhttp = new ActiveXobject("Microsoft.XMLHTTP");
 	}
 	xmlhttp.onreadystatechange = function(){
+		//alert(xmlhttp.readyState);
+		if(xmlhttp.readyState==1){
+			$(".progress").html("<h3 style=\"color:#fff;text-align:center;margin-top:30%;color:rgb(100,255,186);margin-left:0px;font-weight:100\"></h3><div style=\"width:80%;margin-left:10%;height:1px;background-color:#333\"><div style=\"width:1px;height:1px;background-color:rgb(100,255,186)\"></div></div>")
+			//alert("qqqq");
+			showProgesss();
+		}
+		changeProgress(xmlhttp.readyState);
 		if(xmlhttp.readyState==4 && xmlhttp.status==200){
 			if(xmlhttp.responseText!=""){
 				alert("学号 "+xmlhttp.responseText+" 已经报名，请勿重复报名！");
+				hideProgress();
 				for(i=0;i<numberOfMem.length;i++)
 					if(numberOfMem[i]==xmlhttp.responseText)
 						break;
@@ -392,12 +426,15 @@ var linkToDB = function(){
 		xmlhttp = new ActiveXobject("Microsoft.XMLHTTP");
 	}
 	xmlhttp.onreadystatechange = function(){
+		/*
 		if(xmlhttp.readyState==0){
 			$(".treaty").html("<h3 style=\"color:#fff;text-align:center;margin-top:40%;color:rgb(100,255,186);margin-left:0px;font-weight:100\"></h3><div style=\"width:80%;margin-left:10%;height:1px;background-color:#333\"><div style=\"width:50%;height:1px;background-color:rgb(100,255,186)\"></div></div>")
 			showTreaty();
 		}
-		changeProgress(xmlhttp.readyState);
+		*/
+		changeProgress(4+xmlhttp.readyState);
 		if(xmlhttp.readyState==4 && xmlhttp.status==200){
+			hideProgress();
 			$(".frame").html("<div class=\"fetch\"><h1><p>Congratulations!<p></h1><h3><p>你的报名已提交</p></h3></div>");
 			canvas.hide();
 		}
@@ -414,21 +451,22 @@ var setTreaty = function(){
 
 	$(".treaty a").click(function(){
 		$(".treaty").hide();
-		$("html").css("overflow","auto");
+		$("html").css("overflow-y","auto");
+		scrollTo(0,htmlTop);
 	})
 
 	$(".treaty .btn-success").click(function(){
-		//alert("yes");
 		$("#agreeTreaty").prop("checked",true);
 		$(".treaty").hide();
-		$("html").css("overflow","auto");
+		$("html").css("overflow-y","auto");
+		scrollTo(0,htmlTop);
 	})
 
 	$(".treaty .btn-danger").click(function(){
-		//alert("no");
 		$("#agreeTreaty").prop("checked",false);
 		$(".treaty").hide();
-		$("html").css("overflow","auto");
+		$("html").css("overflow-y","auto");
+		scrollTo(0,htmlTop);
 	})
 
 
@@ -437,16 +475,44 @@ var setTreaty = function(){
 
 
 var showTreaty = function(){
-	$(".treaty").css("width",$(window).width()+20);
-	$(".treaty").css("height",$(window.screen.availHeight));
-	$(".treaty").css("top",$(document).scrollTop());
-	$("html").css("overflow","hidden");
+	//$(".treaty").css("height",window.innerHeight);
+	htmlTop = $(document).scrollTop();
+	if(!mobile){
+		$(".treaty").css("top",htmlTop);
+	}
+	else{
+		$(".treaty").css("height",$("html").css("height"));
+		$(".treaty").css("top",0);
+		scrollTo(0,0);
+	}
+	$("html").css("overflow-y","hidden");
 	$(".treaty").show();
 }
 
+var showProgesss = function(){
+	//$(".treaty").css("height",window.innerHeight);
+	htmlTop = $(document).scrollTop();
+	if(!mobile){
+		$(".progress").css("top",htmlTop);
+	}
+	else{
+		$(".progress").css("height",$("html").css("height"));
+		$(".progress").css("top",0);
+		scrollTo(0,0);
+	}
+	$("html").css("overflow-y","hidden");
+	$(".progress").show();
+}
+
+
+var hideProgress = function(){
+		$(".progress").hide();
+		$("html").css("overflow-y","auto");
+		scrollTo(0,htmlTop);
+}
 
 var changeProgress = function(i){
-	digit = 100*(i/4);
-	$(".treaty div div").css("width",digit+"%");
-	$(".treaty h3").html(digit+"%");
+	digit = 100*(i/8);
+	$(".progress div div").css("width",digit+"%");
+	$(".progress h3").html(digit+"%");
 }
