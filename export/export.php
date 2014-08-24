@@ -144,7 +144,7 @@ if($mysqli){
   $mysqli->close();
 
 
-  //echo $html.$indiCount;
+  echo "<script>alert(\"导出成功！\");</script>";
 
 
 
