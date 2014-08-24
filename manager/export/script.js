@@ -37,7 +37,7 @@ var other;
 
 //给组人数:不包括jdMem
 //var num = new Array(1,1,1,8,4,1,1,6,1,1,1,8,4,1,1,13,1,1,1,1,1,1,50,10,6,20);
-var num = new Array(1,1,1,2,2,1,1,2,1,1,1,2,3,1,1,2,1,1,1,1,1,1,2,2,2,2);//37
+var num = new Array(1,1,1,8,4,1,1,6,1,1,1,8,4,1,1,13,1,1,1,1,1,1,50,10,6,20);//37
 
 
 var html;
@@ -120,7 +120,7 @@ var split2Array = function(str,seperater){
 
 
 var showTable = function(){
-html ="<table border=1><tr><td colspan=10><b>荧光夜跑-组委会</b></td></tr><tbody><tr><td rowspan=5>策划组</td><td colspan=2>组长</td><td colspan=7>"+trimArray(result[0])+"</td></tr><tr><td colspan=2>副组长</td><td colspan=7>"+trimArray(result[1])+"</td></tr><tr><td colspan=2>秘书长</td><td colspan=7>"+trimArray(result[2])+"</td></tr><tr><td colspan=2>财务处队员</td><td colspan=7>"+trimArray(result[3])+"</td></tr><tr><td colspan=2>智囊团团员</td><td colspan=7>"+trimArray(result[4])+"</td></tr><tr><td rowspan=3>媒体摄影组</td><td colspan=2>组长</td><td colspan=7>"+trimArray(result[5])+"</td></tr><tr><td colspan=2>副组长</td><td colspan=7>"+trimArray(result[6])+"</td></tr><tr><td colspan=2>组员</td><td colspan=7>"+trimArray(result[7])+"</td></tr><tr><td rowspan=5>宣传组</td><td colspan=2>组长</td><td colspan=7>"+trimArray(result[8])+"</td></tr><tr><td colspan=2>网络宣传队队长</td><td colspan=7>"+trimArray(result[9])+"</td></tr><tr><td colspan=2>海报视频制作队队长</td><td colspan=7>"+trimArray(result[10])+"</td></tr><tr><td colspan=2>网络宣传队队员</td><td colspan=7>"+trimArray(result[11])+"</td></tr><tr><td colspan=2>海报视频制作队队员</td><td colspan=7>"+trimArray(result[12])+"</td></tr><tr><td rowspan=3>外联组</td><td colspan=2>组长</td><td colspan=7>"+trimArray(result[13])+"</td></tr><tr><td colspan=2>副组长</td><td colspan=7>"+trimArray(result[14])+"</td></tr><tr><td colspan=2>组员</td><td colspan=7>"+trimArray(result[15])+"</td></tr><tr><td rowspan=11>实践组</td><td colspan=2>组长</td><td colspan=7>"+trimArray(result[16])+"</td></tr><tr><td colspan=2>站点服务队队长</td><td colspan=7>"+trimArray(result[17])+"</td></tr><tr><td colspan=2>站点服务队副队长</td><td colspan=7>"+trimArray(result[18])+"</td></tr><tr><td colspan=2>骑行巡逻队队长(机动队队长)</td><td colspan=7>"+trimArray(result[19])+"</td></tr><tr><td colspan=2>前台紧急服务中心队长</td><td colspan=7>"+trimArray(result[20])+"</td></tr><tr><td colspan=2>医疗救护队队长</td><td colspan=7>"+trimArray(result[21])+"</td></tr><tr><td colspan=2>站点服务队队员</td><td colspan=7>"+trimArray(result[22])+"</td></tr><tr><td colspan=2>骑行巡逻队队员</td><td colspan=7>"+trimArray(result[23])+"</td></tr><tr><td colspan=2>前台紧急服务中心队员</td><td colspan=7>"+trimArray(result[24])+"</td></tr><tr><td colspan=2>医疗救护队队员</td><td colspan=7>"+trimArray(result[25])+"</td></tr><tr><td colspan=2>机动队队员</td><td colspan=7>"+trimArray(result[26])+"</tr></tbody></table>";
+html ="<table border=1><tr><td colspan=10><b>荧光夜跑-组委会</b></td></tr><tbody><tr><td rowspan=5>策划组</td><td colspan=2>组长</td><td colspan=7>"+trimArray(result[0])+"</td></tr><tr><td colspan=2>副组长</td><td colspan=7>"+trimArray(result[1])+"</td></tr><tr><td colspan=2>秘书长</td><td colspan=7>"+trimArray(result[2])+"</td></tr><tr><td colspan=2>财务处队员</td><td colspan=7>"+trimArray(result[3])+"</td></tr><tr><td colspan=2>智囊团队员</td><td colspan=7>"+trimArray(result[4])+"</td></tr><tr><td rowspan=3>媒体摄影组</td><td colspan=2>组长</td><td colspan=7>"+trimArray(result[5])+"</td></tr><tr><td colspan=2>副组长</td><td colspan=7>"+trimArray(result[6])+"</td></tr><tr><td colspan=2>组员</td><td colspan=7>"+trimArray(result[7])+"</td></tr><tr><td rowspan=5>宣传组</td><td colspan=2>组长</td><td colspan=7>"+trimArray(result[8])+"</td></tr><tr><td colspan=2>网络宣传队队长</td><td colspan=7>"+trimArray(result[9])+"</td></tr><tr><td colspan=2>海报视频制作队队长</td><td colspan=7>"+trimArray(result[10])+"</td></tr><tr><td colspan=2>网络宣传队队员</td><td colspan=7>"+trimArray(result[11])+"</td></tr><tr><td colspan=2>海报视频制作队队员</td><td colspan=7>"+trimArray(result[12])+"</td></tr><tr><td rowspan=3>外联组</td><td colspan=2>组长</td><td colspan=7>"+trimArray(result[13])+"</td></tr><tr><td colspan=2>副组长</td><td colspan=7>"+trimArray(result[14])+"</td></tr><tr><td colspan=2>组员</td><td colspan=7>"+trimArray(result[15])+"</td></tr><tr><td rowspan=11>实践组</td><td colspan=2>组长</td><td colspan=7>"+trimArray(result[16])+"</td></tr><tr><td colspan=2>站点服务队队长</td><td colspan=7>"+trimArray(result[17])+"</td></tr><tr><td colspan=2>站点服务队副队长</td><td colspan=7>"+trimArray(result[18])+"</td></tr><tr><td colspan=2>骑行巡逻队队长(机动队队长)</td><td colspan=7>"+trimArray(result[19])+"</td></tr><tr><td colspan=2>前台紧急服务中心队长</td><td colspan=7>"+trimArray(result[20])+"</td></tr><tr><td colspan=2>医疗救护队队长</td><td colspan=7>"+trimArray(result[21])+"</td></tr><tr><td colspan=2>站点服务队队员</td><td colspan=7>"+trimArray(result[22])+"</td></tr><tr><td colspan=2>骑行巡逻队队员</td><td colspan=7>"+trimArray(result[23])+"</td></tr><tr><td colspan=2>前台紧急服务中心队员</td><td colspan=7>"+trimArray(result[24])+"</td></tr><tr><td colspan=2>医疗救护队队员</td><td colspan=7>"+trimArray(result[25])+"</td></tr><tr><td colspan=2>机动队队员</td><td colspan=7>"+trimArray(result[26])+"</tr></tbody></table>";
 	$("#showResult").html(html).show().nextAll("center").show();
 	$("hr").show();
 }
@@ -143,18 +143,5 @@ var trimArray = function(arr){
 
 
 var exportTable = function(){
-	var xmlhttp;
-	if(window.XMLHttpRequest){
-		xmlhttp = new XMLHttpRequest();
-	}
-	else{
-		xmlhttp = new ActiveXobject("Microsoft.XMLHTTP");
-	}
-	xmlhttp.onreadystatechange = function(){
-		if(xmlhttp.readyState==4 && xmlhttp.status==200){
-			alert("导出成功！");
-		}
-	}
-	xmlhttp.open("GET","export.php?table="+html,true);
-	xmlhttp.send();
+	$("textarea").html(html).parent().submit();
 }
