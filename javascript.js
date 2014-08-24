@@ -256,7 +256,7 @@ var checkRe = function(){
 	xmlhttp.onreadystatechange = function(){
 		//alert(xmlhttp.readyState);
 		if(xmlhttp.readyState==1){
-			$(".progress").html("<h3 style=\"color:#fff;text-align:center;margin-top:30%;color:rgb(100,255,186);margin-left:0px;font-weight:100\"></h3><div style=\"width:80%;margin-left:10%;height:1px;background-color:#333\"><div style=\"width:1px;height:1px;background-color:rgb(100,255,186)\"></div></div>")
+			$(".progress").html("<h3 style=\"color:#fff;text-align:center;margin-top:30%;color:rgb(100,255,186);margin-left:0px;font-weight:100\"></h3><div style=\"width:80%;margin-left:10%;height:1px;background-color:#333\"><div style=\"width:1px;height:1px;background-color:rgb(100,255,186)\"></div></div>");
 			//alert("qqqq");
 			showProgesss();
 		}
@@ -273,11 +273,22 @@ var checkRe = function(){
 				return false;
 			}
 			else{
-				if(!checkName()) return false;
-				if(!checkPhoneNumber()) return false;
-				if(!checkEmail()) return false;
-				if(!checkTreaty()) return false;
-				//alert("dd");
+				if(!checkName()){
+					hideProgress();
+					return false;
+				}
+				if(!checkPhoneNumber()){
+					hideProgress();
+					return false;
+				}
+				if(!checkEmail()){
+					hideProgress();
+					return false;
+				}
+				if(!checkTreaty()){
+					hideProgress();
+					return false;
+				}
 				linkToDB();
 				return true;
 			}
@@ -404,19 +415,14 @@ var linkToDB = function(){
 			inputEmail = $(".e-mail:not(:hidden)");
 			message = message + "&email" + index + "=" + inputEmail.eq(i).val();
 		}
-		/*
-		message = message + "&ename=" + inputName.eq(i).val();
-		message = message + "&ephoneLong=" + inputPhoneLong.eq(i).val();
-		message = message + "&ephoneShort=" + inputPhoneShort.eq(i).val();
-		*/
 	}
 
 
 
-	if(!confirm("确定信息填写正确，提交报名？"))
+	if(!confirm("确定信息填写正确，提交报名？")){
+		hideProgress();
 		return;
-
-	//alert(message);
+	}
 
 	var xmlhttp;
 	if(window.XMLHttpRequest){
@@ -426,12 +432,6 @@ var linkToDB = function(){
 		xmlhttp = new ActiveXobject("Microsoft.XMLHTTP");
 	}
 	xmlhttp.onreadystatechange = function(){
-		/*
-		if(xmlhttp.readyState==0){
-			$(".treaty").html("<h3 style=\"color:#fff;text-align:center;margin-top:40%;color:rgb(100,255,186);margin-left:0px;font-weight:100\"></h3><div style=\"width:80%;margin-left:10%;height:1px;background-color:#333\"><div style=\"width:50%;height:1px;background-color:rgb(100,255,186)\"></div></div>")
-			showTreaty();
-		}
-		*/
 		changeProgress(4+xmlhttp.readyState);
 		if(xmlhttp.readyState==4 && xmlhttp.status==200){
 			hideProgress();

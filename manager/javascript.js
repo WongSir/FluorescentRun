@@ -20,14 +20,22 @@ window.onload = function(){
 			xmlhttp = new ActiveXobject("Microsoft.XMLHTTP");
 		}
 		xmlhttp.onreadystatechange = function(){
+		if(xmlhttp.readyState==1){
+		$(".progress").html("<h3 style=\"color:#fff;text-align:center;margin-top:30%;color:rgb(100,255,186);margin-left:0px;font-weight:100\"></h3><div style=\"width:80%;margin-left:10%;height:1px;background-color:#333\"><div style=\"width:1px;height:1px;background-color:rgb(100,255,186)\"></div></div>");
+			showProgesss();
+		}
+		changeProgress(xmlhttp.readyState);
 			if(xmlhttp.readyState==4 && xmlhttp.status==200){
 				if(xmlhttp.responseText=="true"){
 					alert("你已经提交过申请表，请勿重复申请！");
+					hideProgress();
 					return false;
 				}
 				else{
 					xmlhttp.onreadystatechange = function(){
+						changeProgress(4+xmlhttp.readyState);
 						if(xmlhttp.readyState==4 && xmlhttp.status==200){
+							hideProgress();
 							$(".frame").html("<div class=\"fetch\"><h1><p>Congratulations!<p></h1><h3><br><p>你的报名已提交</p></h3></div>");
 						}
 					}
@@ -92,4 +100,32 @@ var setSelect = function(){
 	seWidth = parseInt(select.css("width"));
 	//alert((seWidth-opWidth)/2);
 	select.css("padding-left",(seWidth-opWidth)/2);
+}
+
+var showProgesss = function(){
+	//$(".treaty").css("height",window.innerHeight);
+	htmlTop = $(document).scrollTop();
+	//if(!mobile){
+		$(".progress").css("top",htmlTop);
+	//}
+	//else{
+	//	$(".progress").css("height",$("html").css("height"));
+	//	$(".progress").css("top",0);
+	//	scrollTo(0,0);
+	//}
+	$("html").css("overflow-y","hidden");
+	$(".progress").show();
+}
+
+
+var hideProgress = function(){
+		$(".progress").hide();
+		$("html").css("overflow-y","auto");
+		scrollTo(0,htmlTop);
+}
+
+var changeProgress = function(i){
+	digit = 100*(i/8);
+	$(".progress div div").css("width",digit+"%");
+	$(".progress h3").html(digit+"%");
 }

@@ -1,6 +1,6 @@
 <?php
 
-$table = $_GET["table"];
+$table = $_POST["table"];
 
 $html = "<!DOCTYPE>
 <html>
@@ -30,7 +30,7 @@ if($of){
 }
 fclose($of);
 
-
+echo "<script>alert(\"导出成功！\");</script>";
 
 
 

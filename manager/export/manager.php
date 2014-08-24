@@ -50,6 +50,13 @@ echo"
 <hr><center><button class=\"btn btn-default\" onclick=\"exportTable()\">导出结果</button></center>
 </div>
 
+<form action=\"export.php\" method=\"post\" style=\"display:none\" target=\"exportFrame\">
+<textarea name=\"table\"></textarea>
+</form>
+
+<iframe style=\"display:none\" name=\"exportFrame\">
+</iframe>
+
 
 </body>
 </html>";
