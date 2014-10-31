@@ -52,6 +52,7 @@ $(window).load(function(){
 	context = canvas.get(0).getContext("2d");
 	drawGlow(0);
 	showTreaty();
+	checkTime();
 })
 
 
@@ -171,6 +172,19 @@ var check = function(){
 	return false;
 }
 
+
+var checkTime = function(){
+	var date1 = new Date();
+	var date2 = new Date(2014,10,14,19,0,0);
+	time = date2.getTime()-date1.getTime();
+	if(time<=0){
+		alert("报名已截止，感谢你的关注！");
+		return false;
+	}
+	return true;
+}
+
+
 var checkName = function(){
 	inputName = $(".name:not(:hidden)");
 	for(i = 0;i<inputName.length;i++){
@@ -202,7 +216,7 @@ var checkLocalNumber = function(){
 	inputNumber = $(".number:not(:hidden)");
 	for(i = 0;i<inputNumber.length;i++)
 		for(j = i+1;j<inputNumber.length;j++)
-			if(inputNumber.eq(i).val()==inputNumber.eq(j).val()){
+			if((inputNumber.eq(i).val()==inputNumber.eq(j).val()) && (inputNumber.eq(i).val()!="")){
 				inputNumber.eq(j).addClass("error").focus().parent().prev(".error-tips").html("你输入的学号已重复");
 				return false;
 			}
@@ -231,6 +245,10 @@ var checkRe = function(){
 
 
 var checkReSub = function(str,obj){
+	if(str==""){
+		exist = false;
+		return;
+	}
 	if(window.XMLHttpRequest){
 		xmlhttp = new XMLHttpRequest();
 	}
@@ -367,6 +385,8 @@ var linkToDB = function(){
 				reg=/^[0-9]*$/;
 				if(reg.test(xmlhttp.responseText))
 					$(".frame").html("<div class=\"fetch\"><h1><p>ERROR!<p></h1><h3><p>服务器检测到你填写的信息有误哦~<br>学号&nbsp;"+xmlhttp.responseText+"&nbsp;重复报名！<br>请确认信息正确重新填写吧~</p></h3></div>");
+				else if(xmlhttp.responseText = "报名已截止，感谢你的关注！")
+					$(".frame").html("<div class=\"fetch\"><h1><p>ERROR!<p></h1><h3><p>"+xmlhttp.responseText+"</p></h3></div>");
 				else
 					$(".frame").html("<div class=\"fetch\"><h1><p>ERROR!<p></h1><h3><p>服务器检测到你填写的信息有误哦~<br>"+xmlhttp.responseText+"<br>请确认信息正确重新填写吧~</p></h3></div>");
 			}

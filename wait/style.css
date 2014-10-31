@@ -1,0 +1,44 @@
+body{
+	background-image:url("pic/background-blur.jpg");
+	background-repeat:no-repeat;
+	background-attachment:fixed;
+	background-position:center;
+	background-size:cover;
+	padding-top:50px;
+	color:#fff;
+	text-align:center;
+}
+
+h1{
+	font-size:3em;
+}
+
+hr{
+	width:60%;
+	margin:30px auto 30px auto;
+	border-bottom:1px solid #999;
+}
+
+h2{
+	font-family:helvetica,arial;
+	font-size:2.5em;
+	font-weight:lighter;
+}
+
+p{
+	font-size:1.5em;
+}
+
+.tips{
+	font-size:1.1em;
+}
+
+.tips a{
+	color:#fff;
+}
+
+#timeLeft{
+	font-size:2.5em;
+	font-family:arial;
+	font-weight:lighter;
+}
