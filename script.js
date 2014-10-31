@@ -30,8 +30,16 @@ $(document).ready(function(){
 
 	$(".college").change(function(){
 		//alert("asd");
-		if($(this).val()=="研究生"){
+		if($(this).val()=="研究生" || $(this).val()=="校友"){
+			option = $('<option>&nbsp;</option>').val(" ").attr("selected","selected");
+			$(this).nextAll(".grade").append(option);
 			$(this).nextAll(".grade").attr("disabled",true).css("background-color","#ccc");
+			
+		}
+		else{
+			$(this).nextAll(".grade").children("option[value=' ']").remove()
+			$(this).nextAll(".grade").children("option[value='大一']").attr("selected","selected");
+			$(this).nextAll(".grade").attr("disabled",false).css("background-color","#fff");
 		}
 	});
 
@@ -48,12 +56,25 @@ $(document).ready(function(){
 })
 
 $(window).load(function(){
+	//alert(navigator.userAgent.toLowerCase());
+	//checkBrowser();
 	canvas = $("canvas");
 	context = canvas.get(0).getContext("2d");
 	drawGlow(0);
 	showTreaty();
 	checkTime();
 })
+
+
+var checkBrowser = function(){
+	ua = navigator.userAgent.toLowerCase();
+	if((s=ua.match(/msie ([\d.]+)/))==true)
+		info = s[1];
+	else
+		return;
+	alert(parseInt(info));
+	//if(parseInt(info)<9)
+}
 
 
 var setSelect = function(){
