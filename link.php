@@ -9,12 +9,12 @@ $phoneLong = array();
 $phoneShort = array();
 $address = array();
 $email = array();
-$type = $_GET['type'];
+$type = urldecode($_GET['type']);
 $groupNum = $_GET["groupNum"];
 
 $mysqli = new mysqli('localhost','root',"");
 
-
+//echo $type;
 if($mysqli){
 	if(checkTime()===false){
 		echo "报名已截止，感谢你的关注！";
@@ -25,14 +25,14 @@ if($mysqli){
 			$index = "";
 		else
 			$index = (string)$i;
-		array_push($name,$_GET["name".$index]);
-		array_push($sex,$_GET["sex".$index]);
+		array_push($name,urldecode($_GET["name".$index]));
+		array_push($sex,urldecode($_GET["sex".$index]));
 		array_push($number,$_GET["number".$index]);
-		array_push($college,$_GET["college".$index]);
-		array_push($grade,$_GET["grade".$index]);
+		array_push($college,urldecode($_GET["college".$index]));
+		array_push($grade,urldecode($_GET["grade".$index]));
 		array_push($phoneLong,$_GET["phoneLong".$index]);
 		array_push($phoneShort,$_GET["phoneShort".$index]);
-		array_push($address,$_GET["address".$index]);
+		array_push($address,urldecode($_GET["address".$index]));
 		array_push($email,$_GET["email".$index]);
 	}
 	if(!checkName()){echo "error";return false;}
@@ -59,7 +59,7 @@ function checkName(){
 	global $groupNum;
 	global $name;
 	for($i = 0;$i<$groupNum;$i++){
-		$memberName = str_replace(' ','',$name[$i]);
+		$memberName = trim($name[$i]);
 		if($memberName=="")
 			return false;
 	}

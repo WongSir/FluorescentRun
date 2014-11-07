@@ -10,7 +10,7 @@
 </head>
 <body>
 
-<div class="title"><h2>逃跑计划</h2></div>
+<div class="title"><h1>逃跑计划</h1></div>
 
 
 
@@ -21,11 +21,13 @@
 		<span class="picOption-wrap">
 			<canvas id="glow" width="300" height="85"></canvas>
 			<span class="picOption horizontal-stacks">
-				<span>
-					<img src="pic/competitor.png" class="pic selectPic" value="挑战组">
+				<span class="active">
+					<img src="pic/volunteer.png" class="pic" value="体验组">
+					<p>体验组</p>
 				</span>
-				<span style="display:none">
-					<img src="pic/volunteer.png" class="pic hiddenPic" value="体验组">
+				<span>
+					<img src="pic/competitor.png" class="pic" value="挑战组">
+					<p>挑战组</p>
 				</span>	
 			</span>
 		</span>
@@ -33,7 +35,7 @@
 
 
 
-<form onsubmit="return check();">
+<form action="link.php">
 
 	<div class="horizontal-stacks num-select">
 		<span class="formTag">团队人数：</span>
@@ -455,7 +457,7 @@
 </form>
 
 </div>
-<div class="treaty"  style="display:none">
+<div class="treaty">
 	<h3>活动须知</h3><a href="#">×</a>
 	</br><b>1、装备建议</b><br>
 	（1）轻便的跑步鞋。禁止穿拖鞋、高跟鞋参加活动，一经发现，立即取消活动资格 （2）一些零钱（买水）、个人药品（止血贴、活络油等）、干毛巾（3）必备学生证或者校园卡在第一签到站点进行签到。
@@ -471,7 +473,7 @@
 	（2）因为活动晚上七点就开始了，希望活动参赛者晚上早点就餐，避免伤害肠胃。
 	（3）由于每个人的精神状态和肉体承受能力都是有极限的，所以组委会允许活动参加者中途放弃，量力而行即可。 
 	（4）在服务站点处，有组委会特地安排的医疗救护队。同时，有水源提供。饮水过程中，希望大家不要暴饮。
-	（5）活动现场设置义卖和募捐区域，谢谢各位尽自己所能献上一份爱心，捐得多是一份心意，捐得少也是一份心意。我们将会派人员记录募捐同学的名字，活动结束后，我们将会对特别热心的同学表示感谢。
+	（5）活动现场设置义卖和募捐区域，谢谢各位尽自己所能献上一份爱心，捐得多是一份心意，捐得少也是一份心意。参加义卖和募捐都是自愿的。我们将会派人员记录募捐同学的名字，活动结束后，我们将会对特别热心的同学表示感谢。
 	（6）活动结束，扣除活动成本后，因本次活动所凑集的资金全部用于购买收音机赠送给广州萝岗区颐憩园老人院的孤寡老人。账目将完全透明化，整理后发布到九大学院红会官方微信上，欢迎社会各界监督。
 	<br>
 	<b>5、免责声明</b><br>
@@ -487,6 +489,16 @@
 <div class="progress" style="display:none">
 	<h3>0%</h3>
 	<div class="progress-outer"><div class="progress-inner"></div></div>
+</div>
+<div id="jsError">
+	<div class="error-wrap">
+		<h1>ERROR</h1>
+		<p>如果你看到这个界面，说明你的浏览器有可能禁用了脚本。。</p>
+		<p>请启用浏览器脚本后再刷新试试吧╮(╯▽╰)╭</p>
+		<p>如果还是有问题，请加入活动咨询群向我们提问吧~</p>
+		<hr>
+		<p class="tips">更多活动信息请点击：<a href="http://mp.weixin.qq.com/s?__biz=MzA4MDcyNzIyMg==&mid=201177605&idx=1&sn=6e7e9c4846c66f23a0d946fa8b9110b8#rd" target="_blank">2014华农大逃跑计划</a>&nbsp;&nbsp;活动咨询QQ群：26124596</p>
+	</div>
 </div>
 </body>
 </html>

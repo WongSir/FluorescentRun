@@ -6,6 +6,7 @@ body{
 	background-size:cover;
 	padding-top:15px;
 	color:#fff;
+	overflow:hidden;
 }
 
 .frame{
@@ -45,8 +46,8 @@ body{
 	color:#fff;
 	margin:0 4% 0 7%;
 	position:relative;
-	top:-25px;
 	word-wrap:normal;
+	top:-25px;
 }
 
 .tag .typeTips{
@@ -57,25 +58,47 @@ body{
 }
 
 .picOption-wrap{
-	width:300px;
+	width:350px;
 	height:85px;
 	margin-top:10px;
 }
 
+canvas{
+	position:absolute;
+	z-index:1;
+}
+
+
 .picOption{
-	position:relative;
-	margin-top:-85px;
+	position:absolute;
 	display:inline-block;
+	z-index:10;
+	color:#999;
 }
 
 .picOption img{
 	width:45px;
 	height:45px;
 	z-index:10;
+	position:relative;
+	left:5px;
+}
+
+.picOption p{
+	text-align:center;
+	margin:10px 0px 0px 0px;
+	padding: 2px 5px;
+	position: relative;
+	left: -6px;
 }
 
 .picOption>span{
 	padding:5px 50px 5px 50px;
+}
+
+.picOption>.active p{
+	color:#fff;
+	background-color:rgba(77,255,186,0.5);
 }
 
 .picOption>span:nth-of-type(1){
@@ -301,7 +324,46 @@ input,select{
 }
 
 .error:focus{
+	
 	border-color:#d9534f;
 	border-width:3px;
 	border-style:dashed;
+}
+
+#jsError{
+	background-color:rgba(0,0,0,0.95);
+	position:fixed;
+	z-index:101;
+	top:0px;
+	left:0px;
+	height:100%;
+	width:100%;
+	word-wrap:break-word;
+	line-height:26px;
+	font-size:17px;
+	text-align:center;
+	font-family:"Microsoft YaHei",微软雅黑,"Microsoft JhengHei",华文细黑,STHeiti,MingLiu;
+	font-weight:lighter;
+}
+
+#jsError .error-wrap{
+	display:inline-block;
+	margin:30px auto;
+}
+
+#jsError h1{
+	font-size:60px;
+	font-family:helvetica;
+	font-weight:lighter;
+	margin-bottom:50px
+}
+
+#jsError hr{
+	margin-bottom: 20px;
+	margin-top: 50px;
+	border-color: #888;
+}
+
+#jsError a{
+	color:#fff
 }
