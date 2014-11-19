@@ -48,7 +48,7 @@ if($mysqli){
 
 
 function checkTime(){
-	$date1 = strtotime('2014-11-14 19:00:00');
+	$date1 = strtotime('2014-11-14 9:00:00');
 	if($date1-time()<=0)
 		return false;
 	else

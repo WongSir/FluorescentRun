@@ -47,7 +47,7 @@ body{
 	margin:0 4% 0 7%;
 	position:relative;
 	word-wrap:normal;
-	top:-25px;
+	top:-15px;
 }
 
 .tag .typeTips{
@@ -60,28 +60,31 @@ body{
 .picOption-wrap{
 	width:350px;
 	height:85px;
-	margin-top:10px;
 }
 
+/*
 canvas{
 	position:absolute;
 	z-index:1;
 }
-
+*/
 
 .picOption{
 	position:absolute;
 	display:inline-block;
-	z-index:10;
 	color:#999;
 }
 
 .picOption img{
 	width:45px;
 	height:45px;
-	z-index:10;
 	position:relative;
 	left:5px;
+	padding:4px 1px 0px 3px;
+	border-width: 2px;
+	border-color: transparent;
+	border-style: inset;
+	border-radius: 30px;
 }
 
 .picOption p{
@@ -89,7 +92,7 @@ canvas{
 	margin:10px 0px 0px 0px;
 	padding: 2px 5px;
 	position: relative;
-	left: -6px;
+	left:-2px;
 }
 
 .picOption>span{
@@ -99,6 +102,10 @@ canvas{
 .picOption>.active p{
 	color:#fff;
 	background-color:rgba(77,255,186,0.5);
+}
+
+.picOption>.active img{
+	border-color: rgb(77,255,186);
 }
 
 .picOption>span:nth-of-type(1){

@@ -3,7 +3,7 @@ var context;
 var lighter = false;
 var type="体验组";
 var exist = false;
-var handeler;
+//var handeler;
 
 $(document).ready(function(){
 	$("#jsError").hide();
@@ -18,8 +18,8 @@ $(document).ready(function(){
 	$(".picOption>span").click(function(){
 		$(this).siblings().removeClass("active").end().addClass("active");
 		type = $(this).find("img").attr("value");
-		clearTimeout(handeler);
-		drawGlow(0);
+		//clearTimeout(handeler);
+		//drawGlow(0);
 	})
 
 	$(".college").change(function(){
@@ -50,9 +50,9 @@ $(document).ready(function(){
 })
 
 $(window).load(function(){
-	canvas = $("canvas");
-	context = canvas.get(0).getContext("2d");
-	drawGlow(0);
+	//canvas = $("canvas");
+	//context = canvas.get(0).getContext("2d");
+	//drawGlow(0);
 	showTreaty();
 	checkTime();	
 	$("form").get(0).onsubmit = function(){
@@ -99,7 +99,7 @@ var setSelect = function(){
 }
 
 
-
+/*
 var drawGlow = function(radius){
 	context.clearRect(0,0,300,85);
 	context.shadowColor = "rgb(77,255,186)";
@@ -113,7 +113,7 @@ var drawGlow = function(radius){
 	if(type == "体验组")
 		glowX = 75;
 	else
-		glowX = 250;
+		glowX = 251;
 	context.arc(glowX,25,23,0,Math.PI*2,false);
 	context.closePath();
 	context.stroke();
@@ -124,6 +124,7 @@ var drawGlow = function(radius){
 	else radius+=3;
 	handeler = window.setTimeout(function(){drawGlow(radius);},500);
 }
+*/
 
 var numChange = function(){
 	$("#teammate2").hide();
@@ -183,7 +184,7 @@ var check = function(){
 
 var checkTime = function(){
 	var date1 = new Date();
-	var date2 = new Date(2014,10,14,19,0,0);
+	var date2 = new Date(2014,10,14,9,0,0);
 	time = date2.getTime()-date1.getTime();
 	if(time<=0){
 		alert("报名已截止，感谢你的关注！");
